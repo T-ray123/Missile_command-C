@@ -23,19 +23,22 @@ static void split_alien(Sprite*);
 
 
 // Arsenal is depleted and there are no more active missiles.
-bool is_alien_done() {
+bool is_alien_done() 
+{
     return (!missile_count && hit_count >= total_missiles); // Missiles may count twice when split.
 }
 
 
-void init_alien() {
+void init_alien() 
+{
     ALIEN_CANVAS.window = newwin(0, 0, 0, 0);
     init_pair(2, COLOR_RED, COLOR_BLACK);
     wattron(ALIEN_CANVAS.window, COLOR_PAIR(2));
 }
 
 
-void reset_alien() {
+void reset_alien() 
+{
     missile_count = total_missiles;
     hit_count = 0;
 }
