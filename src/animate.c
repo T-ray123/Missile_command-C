@@ -14,7 +14,9 @@ void lerp(Vector* vec) {
     double elapsed = (double) (get_time() - vec->start_time) / SECOND;
     double mult = elapsed / total_time;
 
-    if (mult < 1) {
+    if (mult < 1)
+     {
+        
         Coord next = {
             .y = vec->beg.y + (vec->end.y - vec->beg.y) * mult,
             .x = vec->beg.x + (vec->end.x - vec->beg.x) * mult
