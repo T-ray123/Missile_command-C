@@ -49,7 +49,7 @@ int main()
 
 static void init()
 {
-    srand(time(NULL)) //srand for random seed
+    srand(time(NULL)); //srand for random seed
     initscr(); //init the screen/window
     noecho(); //Don't echo input
     start_color(); // Enable colored formatting.

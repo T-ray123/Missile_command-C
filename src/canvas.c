@@ -52,19 +52,22 @@ void clear_sprite(Canvas* canvas, Sprite* sprite)
 }
 
 
-void draw_sprite(Canvas* canvas, Sprite* sprite) {
+void draw_sprite(Canvas* canvas, Sprite* sprite) 
+{
     draw(canvas, &sprite->path.current, sprite->view);
 }
 
 /*
  * Check if a canvas has a character at `coord`
 */
-bool has_object(Canvas* canvas, Coord* coord) {
+bool has_object(Canvas* canvas, Coord* coord)
+ {
     char c = mvwinch(canvas->window, coord->y, coord->x);
     return (c != ERR && c != ' ');
 }
 
 
-static void draw(Canvas* canvas, Coord* point, chtype c) {
+static void draw(Canvas* canvas, Coord* point, chtype c) 
+{
     mvwaddch(canvas->window, point->y, point->x, c);
 }

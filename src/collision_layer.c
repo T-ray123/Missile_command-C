@@ -28,7 +28,8 @@ void collision_flare(Coord* point)
 
     // Find a location in memory for the each sprite
     int count = 0;
-    for (int i = 0; i < 120; i++) {
+    for (int i = 0; i < 120; i++) 
+    {
         Sprite* flare = &COLLISION_CANVAS.sprites[i];
         if (!flare->alive) {
             set_animation(flare, point, &endpoints[count], 10);
