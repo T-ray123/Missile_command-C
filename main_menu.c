@@ -114,7 +114,7 @@ if (strcmp(curr, "Help") == 0)
 	}
 
     unpost_menu(menu);
-    free_menu(menu);
+    free_menu(menu); 
 
     for(int i = 0; i < n_choices; ++i)
         free_item(my_items[i]);
