@@ -49,5 +49,33 @@ int main menu()
 
 	post_menu(menu);
 	wrefresh(mwin);
+
+    /**wgetch, routines read a character from the window. In no-delay mode, 
+     * if no input is waiting, the value ERR is returned. 
+     * In delay mode, the program waits until the system passes text through to the program
+     */
+    int c;
+    char curr[5];
+	while(strcmp(curr, "Play") != 0 && strcmp(curr, "Exit") != 0)
+     {
+        mvwprintw(mwin, LINES / 2 - 5, COLS / 2 - 1, "Missile Defense");
+
+        wrefresh(mwin);
+        strcpy(curr, "    ");
+        switch(wgetch(mwin)) 
+        {
+            case KEY_DOWN:
+                menu_driver(menu, REQ_DOWN_ITEM); //requests an item from the menu
+                break;
+
+            case KEY_UP:
+                menu_driver(menu, REQ_UP_ITEM);
+                break;
+
+            case 10: // enter
+                strcpy(curr, item_name(current_item(menu)));
+                break;
+
+            default: continue;
 }
 
