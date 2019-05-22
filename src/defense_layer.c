@@ -44,16 +44,19 @@ void update_defense(int i)
         return;
 
     Sprite* missile = &DEFENSE_CANVAS.sprites[i];
-    if (!missile->alive) {
+    if (!missile->alive)  //checking for the position of the targetm,depending on the current path of the missile
+     {
         struct Base* base = get_launchpoint(&target->path.current);
-        if (base) {
+        if (base)
+         {
             set_animation(missile, &base->position, &target->path.current, 80);
             missile->view = ACS_DIAMOND;
             missile->keep_alive = SECOND * .5;
             --base->missile_count;
         }
 
-    } else if (is_animation_done(missile)) {
+    } else if (is_animation_done(missile))
+     {
         collision_flare(&missile->path.current);
         target->alive = false;
     }
