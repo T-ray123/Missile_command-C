@@ -121,8 +121,8 @@ void add_score(int val)
 void destroy_building() 
 
 {
-    --building_count;
-    // No more buildings to destory.
+    --building_count;  
+    // No more buildings to destroy
     if (!building_count) 
     {
         round = 1;
