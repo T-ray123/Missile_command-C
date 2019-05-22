@@ -178,3 +178,14 @@ void increment_round()
     reset_buildings();
     ++round;
 }
+
+static void reset_buildings()
+ {
+    building_count = 10;
+}
+
+//if you exit the game, it returns the round you were supposed to be on 
+int get_round() 
+{
+    return round;
+}
