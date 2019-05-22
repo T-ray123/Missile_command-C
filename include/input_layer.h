@@ -8,7 +8,7 @@
 
 Canvas INPUT_CANVAS;
 
-
+//functions used
 void update_input(int);
 void init_input();
 
