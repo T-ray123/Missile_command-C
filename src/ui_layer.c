@@ -178,7 +178,7 @@ void increment_round()
     reset_buildings();
     ++round;
 }
-
+ //reset the buildings 
 static void reset_buildings()
  {
     building_count = 10;
