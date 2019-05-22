@@ -1,4 +1,4 @@
-#ifndef ANIMATE_H
+#ifndef ANIMATE_H //checks whether the token has been defined earlier
 #define ANIMATE_H
 
 #include <ncurses.h>
