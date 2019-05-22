@@ -1,8 +1,3 @@
-
-/**the header for the def layer is not defined properly, define it
- * If 
- */
-
 #ifndef DEFENSE_LAYER_H
 #define DEFENSE_LAYER_H
 
@@ -11,8 +6,7 @@
 
 Canvas DEFENSE_CANVAS;
 
-struct Base
- {
+struct Base {
     int missile_count;
     Coord position;
 } BASE_LEFT, BASE_MID, BASE_RIGHT;

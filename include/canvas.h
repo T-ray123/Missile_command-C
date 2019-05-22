@@ -4,24 +4,21 @@
 #include <ncurses.h>
 #include <time.h>
 
-typedef struct 
-{
+typedef struct {
 	int x;
 	int y;
 } Coord;
 
 
-typedef struct 
-{
+typedef struct {
 	Coord beg;
 	Coord current;
 	Coord end;
 	double speed;
 	long start_time;
-} Vector; //using vector to store different parts of the struct
+} Vector;
 
-typedef struct 
-{
+typedef struct {
     chtype view;
     Vector path;
     long keep_alive; // time before garbage collector gets to it

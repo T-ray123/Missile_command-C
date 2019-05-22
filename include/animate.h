@@ -1,4 +1,4 @@
-#ifndef ANIMATE_H //checks whether the token has been defined earlier
+#ifndef ANIMATE_H
 #define ANIMATE_H
 
 #include <ncurses.h>
@@ -6,9 +6,7 @@
 
 #define SECOND 1000000L
 
-/**
- * function pointers pointing to the different functions used in the program
- */
+
 void lerp(Vector*);
 void set_animation(Sprite*, Coord*, Coord*, int);
 void update_animation(Canvas*, Sprite*);
