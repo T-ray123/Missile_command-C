@@ -160,7 +160,7 @@ void increment_round()
                 timebuff = get_time();
             }
             mvprintw(LINES / 2, COLS / 2, "Success!");
-            update();
+            update(); 
         }
     }
 
