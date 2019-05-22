@@ -134,3 +134,47 @@ void destroy_building()
         getch();
     }
 }
+
+
+void reset_ui() 
+{
+    reset_buildings();
+}
+
+
+/*
+ * Play a short incrementing animation for the user.
+*/
+void increment_round() 
+{
+    long timebuff = get_time(); //used long because the timebuffer is supposed to be of big range
+
+    for (int i = 0; i < 3; i++)
+     {
+        while (bases[i]->missile_count) 
+        {
+            if (get_time() - timebuff > SECOND / 4) 
+            {
+                --bases[i]->missile_count;
+                score += 125;
+                timebuff = get_time();
+            }
+            mvprintw(LINES / 2, COLS / 2, "Success!");
+            update();
+        }
+    }
+
+    timebuff = get_time();
+    for (int i = 0; i < building_count; i++)
+     {
+        score += 300;
+        --building_count;
+        while (get_time() - timebuff < SECOND / 3) 
+        {
+            update();
+        }
+        timebuff = get_time();
+    }
+    reset_buildings();
+    ++round;
+}
