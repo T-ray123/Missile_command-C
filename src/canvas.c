@@ -22,7 +22,8 @@ static void draw(Canvas*, Coord*, chtype);
  * To compensate, it will also delete all the neighboring locations
  * as it travels.
 */
-void clear_sprite(Canvas* canvas, Sprite* sprite) {
+void clear_sprite(Canvas* canvas, Sprite* sprite)
+ {
     if (sprite->view == ' ')
         return;
 
