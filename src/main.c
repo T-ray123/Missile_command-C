@@ -126,15 +126,18 @@ void update()
 }
 
 
-static void start_round() {
+static void start_round()
+{
 	running = true;
-	while (running) {
+	while (running) 
+	{
 		update();
 	}
 }
 
 
-static void reset_round() {
+static void reset_round()
+ {
 	increment_round();
 	clear_game();
 }
