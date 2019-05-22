@@ -40,7 +40,7 @@ _setup := $(shell mkdir -p $(ODIR) $(TARGET))
 $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-missile_command: $(OBJ)
+Missile_command-C: $(OBJ)
 	$(CC) -o $(TARGET)/$@ $^ $(CFLAGS) $(LIBS)
 
 
