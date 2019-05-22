@@ -81,3 +81,30 @@ static void update_buildings()
         pos.x += xincrement;
     }
 }
+
+static void draw_building(Coord* position, int size)
+ {
+    int topy = position->y - size;
+    int leftx = position->x - size * 1.5;
+    int rightx = position->x + size * 1.5;
+
+    mvwaddch(DISPLAY, topy, leftx, ACS_ULCORNER);
+    mvwhline(DISPLAY, topy, leftx + 1, ACS_HLINE, size * 3 - 1);
+    mvwaddch(DISPLAY, topy, rightx, ACS_URCORNER);
+    mvwvline(DISPLAY, topy + 1, rightx, ACS_VLINE, LINES - topy - 1);
+    mvwvline(DISPLAY, topy + 1, leftx, ACS_VLINE, LINES - topy - 1);
+}
+
+
+static void clear_building(Coord* position, int size) 
+{
+    int topy = position->y - size;
+    int leftx = position->x - size * 1.5;
+    int rightx = position->x + size * 1.5;
+
+    mvwaddch(DISPLAY, topy, leftx, ' ');
+    mvwhline(DISPLAY, topy, leftx + 1, ' ', size * 3 - 1);
+    mvwaddch(DISPLAY, topy, rightx, ' ');
+    mvwvline(DISPLAY, topy + 1, rightx, ' ', LINES - topy - 1);
+    mvwvline(DISPLAY, topy + 1, leftx, ' ', LINES - topy - 1);
+}
