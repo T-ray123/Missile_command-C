@@ -111,7 +111,7 @@ void update()
 			}
 		}
 	}
-
+     //refresh of window
 	wrefresh(DISPLAY);
 	wrefresh(COLLISION_CANVAS.window);
 	wrefresh(INPUT_CANVAS.window);
