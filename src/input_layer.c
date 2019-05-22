@@ -33,7 +33,7 @@ void init_input()
 	INPUT_CANVAS.window = newwin(0, 0, 0, 0);
 	keypad(INPUT_CANVAS.window, true); // Allows input from all keys. Includes mouse.
 	mousemask(ALL_MOUSE_EVENTS, NULL); // Listen for mouse events
-	nodelay(INPUT_CANVAS.window, true);
+	nodelay(INPUT_CANVAS.window, true); //No delay in terms of pointer 
 	wtimeout(INPUT_CANVAS.window, 0);
 	cbreak();
 	mouseinterval(1);
