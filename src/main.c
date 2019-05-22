@@ -50,7 +50,7 @@ int main()
 static void init()
 {
     srand(time(NULL)) //srand for random seed
-    initscr();
+    initscr(); //init the screen/window
     noecho(); //Don't echo input
     start_color(); // Enable colored formatting.
 	curs_set(0); // Invisible cursor
@@ -68,11 +68,13 @@ static void init()
 
 
 // Reset any previous game data, start the game animation loop.
-static void start_game() {
+static void start_game() 
+{
 	clear_game();
 
 	lost = false;
-	while (true) {
+	while (true) 
+	{
 		start_round();
 		if (lost) break;
 
@@ -90,14 +92,17 @@ static void start_game() {
  * Finally all the windows are refreshed, displaying the new
  * frame.
 */
-void update() {
-	for (int i = 0; i < 120; i++) {
+void update() 
+{
+	for (int i = 0; i < 120; i++) 
+	{
 		update_display();
 		update_input(i);
 		update_alien(i);
 		update_defense(i);
 
-		for (int l = 0; l < 4; l++) {
+		for (int l = 0; l < 4; l++)
+		 {
 			Canvas* layer = layers[l];
 			Sprite* sprite = &layer->sprites[i];
 
