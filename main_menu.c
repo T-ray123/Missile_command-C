@@ -79,3 +79,47 @@ int main menu()
             default: continue;
 }
 
+/**
+ * validating the menu
+ */
+if (strcmp(curr, "Help") == 0) 
+{
+            wclear(mwin);
+            //const char as I have an immutable pointer which is mutable by itself but not globally
+            const char* msg[] = 
+            {
+                "The aliens are attacking!\n",
+                "Use your specialized anti-alien defense missiles to defend Earth (left click).\n",
+                "\n",
+                "Earning points:\n",
+                "    Alien missile destroyed:           100p\n",
+                "    Extra defense missile in base:     125p\n",
+                "    Civilian building safe:            300p\n",
+                "\n",
+                "Tip:",
+                "Protect your civilian buildings at all cost, you only have 10 of them!\n",
+                "Those special defense missiles are hard to find, use them sparringly.\n",
+                (char*) NULL
+            };
+            for (int i = 0; i < 11; i++) 
+            {
+                mvprintw(LINES / 2 + i, COLS / 2 - 20, msg[i]);
+            }
+            mvprintw(LINES / 2 + 15, COLS / 2 - 20, "Press any key to continue...");
+            refresh();
+            getch();
+            menu_driver(menu, REQ_FIRST_ITEM);
+        }
+        wrefresh(mwin);
+	}
+
+    unpost_menu(menu);
+    free_menu(menu);
+    
+    for(int i = 0; i < n_choices; ++i)
+        free_item(my_items[i]);
+    wclear(mwin);
+    clear();
+    return strcmp(curr, "Exit");
+}
+
