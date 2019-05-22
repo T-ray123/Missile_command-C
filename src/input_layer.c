@@ -3,7 +3,7 @@
 #include "input_layer.h"
 
 
-static int get_event(MEVENT*, int); //pointer to the get_event function
+static int get_event(MEVENT*, int);
 static int get_clickpos(Coord*);
 
 
@@ -14,14 +14,12 @@ static int get_clickpos(Coord*);
  * and launch flares at their location. Cleanup of the targets
  * is handled by defense as well.
 */
-void update_input(int i)
- {
+void update_input(int i) {
 	Sprite* sprite = &INPUT_CANVAS.sprites[i];
 	if (sprite->alive) return;
 
     Coord click_pos;
-    if (get_clickpos(&click_pos) == OK) 
-    {
+    if (get_clickpos(&click_pos) == OK) {
         sprite->path.current = click_pos;
 		sprite->view = 'X';
 		sprite->alive = SECOND * 5;
@@ -29,12 +27,11 @@ void update_input(int i)
 }
 
 
-void init_input()
- {
+void init_input() {
 	INPUT_CANVAS.window = newwin(0, 0, 0, 0);
 	keypad(INPUT_CANVAS.window, true); // Allows input from all keys. Includes mouse.
 	mousemask(ALL_MOUSE_EVENTS, NULL); // Listen for mouse events
-	nodelay(INPUT_CANVAS.window, true); //No delay in terms of pointer 
+	nodelay(INPUT_CANVAS.window, true);
 	wtimeout(INPUT_CANVAS.window, 0);
 	cbreak();
 	mouseinterval(1);
@@ -43,8 +40,7 @@ void init_input()
 }
 
 
-static int get_event(MEVENT* event, int event_type) 
-{
+static int get_event(MEVENT* event, int event_type) {
 	int status = ERR;
 	int c = wgetch(INPUT_CANVAS.window);
 	if (c == KEY_MOUSE && getmouse(event) == OK) {
@@ -54,8 +50,7 @@ static int get_event(MEVENT* event, int event_type)
 }
 
 
-static int get_clickpos(Coord* coord) 
-{
+static int get_clickpos(Coord* coord) {
 	MEVENT event;
 
 	int status = get_event(&event, BUTTON1_PRESSED);

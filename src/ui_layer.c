@@ -21,40 +21,35 @@ static void update_buildings();
 static void update_base();
 static void reset_buildings();
 
-/**
- * adding function for initialising the display
- */
-void init_display() 
 
-{
+void init_display() {
     DISPLAY = newwin(0, 0, 0, 0);
     init_pair(5, COLOR_CYAN, COLOR_BLACK);
-    wattron(DISPLAY, COLOR_PAIR(5)); //The routine attron turns on the named attributes without affecting any others.
+    wattron(DISPLAY, COLOR_PAIR(5));
 }
 
-//10 because each base has 10 missiles in total 
-void update_display() 
-{
+
+void update_display() {
     update_buildings();
     update_score();
     update_base();
     mvwprintw(DISPLAY, 1, COLS - 10, "Round %d ", round);
 }
+
+
 static void update_score() {
     mvwprintw(DISPLAY, 1, COLS / 2, "Score: %d ", score);
 }
 
-//structuring the base
-static void update_base()
- {
-    for (int i = 0; i < 3; i++) 
-    {
+
+static void update_base() {
+    for (int i = 0; i < 3; i++) {
         struct Base* base = bases[i];
 
         draw_building(&base->position, 5);
         mvwprintw(
             DISPLAY,
-            base->position.y - 4,  //the difference in terms of pixels toward each building
+            base->position.y - 4,
             base->position.x - 6,
             "%d ", base->missile_count
         );
@@ -62,28 +57,23 @@ static void update_base()
 }
 
 /*
- * Only drawing the buildings on the map
+ * Only draw
 */
-static void update_buildings() 
-{
+static void update_buildings() {
     int xincrement = COLS * .8 / 10;
     Coord pos = { .x = xincrement * 2, .y = LINES };
-    for (int i = 0; i < 10; i++) 
-    {
-        if (i < building_count) 
-        {
-            draw_building(&pos, 1); //by one pixel
-        } 
-        else 
-        {
+    for (int i = 0; i < 10; i++) {
+        if (i < building_count) {
+            draw_building(&pos, 1);
+        } else {
             clear_building(&pos, 1);
         }
         pos.x += xincrement;
     }
 }
 
-static void draw_building(Coord* position, int size)
- {
+
+static void draw_building(Coord* position, int size) {
     int topy = position->y - size;
     int leftx = position->x - size * 1.5;
     int rightx = position->x + size * 1.5;
@@ -96,8 +86,7 @@ static void draw_building(Coord* position, int size)
 }
 
 
-static void clear_building(Coord* position, int size) 
-{
+static void clear_building(Coord* position, int size) {
     int topy = position->y - size;
     int leftx = position->x - size * 1.5;
     int rightx = position->x + size * 1.5;
@@ -108,27 +97,21 @@ static void clear_building(Coord* position, int size)
     mvwvline(DISPLAY, topy + 1, rightx, ' ', LINES - topy - 1);
     mvwvline(DISPLAY, topy + 1, leftx, ' ', LINES - topy - 1);
 }
- /**
-  * adding score
-  */
-void add_score(int val)
 
- {
+
+void add_score(int val) {
     score += val;
 }
 
 
-void destroy_building() 
-
-{
-    --building_count;  
-    // No more buildings to destroy
-    if (!building_count) 
-    {
+void destroy_building() {
+    --building_count;
+    // No more buildings to destory.
+    if (!building_count) {
         round = 1;
         score = 0;
 
-        mvprintw(LINES / 2, COLS / 2, "You lose. <press any key>"); //if you run out of missiles
+        mvprintw(LINES / 2, COLS / 2, "You lose. <press any key>");
         lose_game();
         // Pause for the user.
         getch();
@@ -136,8 +119,7 @@ void destroy_building()
 }
 
 
-void reset_ui() 
-{
+void reset_ui() {
     reset_buildings();
 }
 
@@ -145,32 +127,26 @@ void reset_ui()
 /*
  * Play a short incrementing animation for the user.
 */
-void increment_round() 
-{
-    long timebuff = get_time(); //used long because the timebuffer is supposed to be of big range
+void increment_round() {
+    long timebuff = get_time();
 
-    for (int i = 0; i < 3; i++)
-     {
-        while (bases[i]->missile_count) 
-        {
-            if (get_time() - timebuff > SECOND / 4) 
-            {
+    for (int i = 0; i < 3; i++) {
+        while (bases[i]->missile_count) {
+            if (get_time() - timebuff > SECOND / 4) {
                 --bases[i]->missile_count;
                 score += 125;
                 timebuff = get_time();
             }
             mvprintw(LINES / 2, COLS / 2, "Success!");
-            update(); 
+            update();
         }
     }
 
     timebuff = get_time();
-    for (int i = 0; i < building_count; i++)
-     {
+    for (int i = 0; i < building_count; i++) {
         score += 300;
         --building_count;
-        while (get_time() - timebuff < SECOND / 3) 
-        {
+        while (get_time() - timebuff < SECOND / 3) {
             update();
         }
         timebuff = get_time();
@@ -178,14 +154,12 @@ void increment_round()
     reset_buildings();
     ++round;
 }
- //reset the buildings 
-static void reset_buildings()
- {
+
+static void reset_buildings() {
     building_count = 10;
 }
 
-//if you exit the game, it returns the round you were supposed to be on 
-int get_round() 
-{
+
+int get_round() {
     return round;
 }

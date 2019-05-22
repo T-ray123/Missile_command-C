@@ -25,8 +25,7 @@ void init_defense() {
 }
 
 
-void reset_defense() 
-{
+void reset_defense() {
     BASE_LEFT.missile_count = defense_arsenal;
     BASE_MID.missile_count = defense_arsenal;
     BASE_RIGHT.missile_count = defense_arsenal;
@@ -36,27 +35,23 @@ void reset_defense()
  * The index of input targets and defense missiles is synchronized.
  * This way we know exactly which sprite the missile is targeting at all times
 */
-void update_defense(int i)
- {
+void update_defense(int i) {
     // check for a live target.
     Sprite* target = &INPUT_CANVAS.sprites[i];
     if (!target->alive)
         return;
 
     Sprite* missile = &DEFENSE_CANVAS.sprites[i];
-    if (!missile->alive)  //checking for the position of the targetm,depending on the current path of the missile
-     {
+    if (!missile->alive) {
         struct Base* base = get_launchpoint(&target->path.current);
-        if (base)
-         {
+        if (base) {
             set_animation(missile, &base->position, &target->path.current, 80);
             missile->view = ACS_DIAMOND;
             missile->keep_alive = SECOND * .5;
             --base->missile_count;
         }
 
-    } else if (is_animation_done(missile))
-     {
+    } else if (is_animation_done(missile)) {
         collision_flare(&missile->path.current);
         target->alive = false;
     }

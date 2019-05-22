@@ -9,8 +9,7 @@
 
 
 
-void init_collision() 
-{
+void init_collision() {
     COLLISION_CANVAS.window = newwin(0, 0, 0 , 0);
     init_pair(4, COLOR_YELLOW, COLOR_BLACK);
     wattron(COLLISION_CANVAS.window, COLOR_PAIR(4));
@@ -21,15 +20,13 @@ void init_collision()
  * Spawns 8 sprites in opposite directions. These are what
  * the alien sprites look for to detect collision.
 */
-void collision_flare(Coord* point) 
-{
+void collision_flare(Coord* point) {
     Coord endpoints[8];
     get_box(point, 4, endpoints);
 
     // Find a location in memory for the each sprite
     int count = 0;
-    for (int i = 0; i < 120; i++) 
-    {
+    for (int i = 0; i < 120; i++) {
         Sprite* flare = &COLLISION_CANVAS.sprites[i];
         if (!flare->alive) {
             set_animation(flare, point, &endpoints[count], 10);
