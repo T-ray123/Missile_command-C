@@ -108,3 +108,29 @@ static void clear_building(Coord* position, int size)
     mvwvline(DISPLAY, topy + 1, rightx, ' ', LINES - topy - 1);
     mvwvline(DISPLAY, topy + 1, leftx, ' ', LINES - topy - 1);
 }
+ /**
+  * adding score
+  */
+void add_score(int val)
+
+ {
+    score += val;
+}
+
+
+void destroy_building() 
+
+{
+    --building_count;
+    // No more buildings to destory.
+    if (!building_count) 
+    {
+        round = 1;
+        score = 0;
+
+        mvprintw(LINES / 2, COLS / 2, "You lose. <press any key>"); //if you run out of missiles
+        lose_game();
+        // Pause for the user.
+        getch();
+    }
+}
