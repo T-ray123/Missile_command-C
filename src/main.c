@@ -55,7 +55,6 @@ static void init()
     start_color(); // Enable colored formatting.
 	curs_set(0); // Invisible cursor
 
-}
 
 
 	// Run the setup required for all other layers.
