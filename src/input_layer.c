@@ -3,7 +3,7 @@
 #include "input_layer.h"
 
 
-static int get_event(MEVENT*, int);
+static int get_event(MEVENT*, int); //pointer to the get_event function
 static int get_clickpos(Coord*);
 
 
@@ -20,7 +20,8 @@ void update_input(int i)
 	if (sprite->alive) return;
 
     Coord click_pos;
-    if (get_clickpos(&click_pos) == OK) {
+    if (get_clickpos(&click_pos) == OK) 
+    {
         sprite->path.current = click_pos;
 		sprite->view = 'X';
 		sprite->alive = SECOND * 5;
@@ -53,7 +54,8 @@ static int get_event(MEVENT* event, int event_type)
 }
 
 
-static int get_clickpos(Coord* coord) {
+static int get_clickpos(Coord* coord) 
+{
 	MEVENT event;
 
 	int status = get_event(&event, BUTTON1_PRESSED);
